@@ -1,0 +1,59 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[margin=3.0cm]{geometry}
+\linespread{1}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{droid}
+
+\begin{document}
+
+\title{\vspace{-1cm} Rörelsekontrollerat musikinstrument\\ \vspace{0.2cm} \small Datorteknik och komponenter, IS1500, Kungliga Tekniska Högskolan, HT2015}
+\author{Mikael Forsberg (19830908-0391), Robin Gunning (19830212-0350)}
+\maketitle
+
+\section*{Syfte och krav}
+Det övergripande syftet med projektet är att skapa ett rörelsekontrollerat musikinstrument liknande det välkända instrumentet Theremin. En Theremin är ett monofoniskt (entonigt) instrument som kontrolleras med två avståndssensorer, där den första styr instrumentets tonhöjd och den andra bestämmer ljudets amplitud. 
+
+\bigskip
+\noindent
+Minimumkraven för musikinstrumentet är följande.
+\begin{itemize}
+\item Instrumentet måste kunna generera ljud med 8-bitars samplingsdjup med en ställbar frekvens och lägga ut detta på åtta GPIO-pinnar.
+\item En hembyggd 8-bit DAC (Covox Speech Thing) måste byggas ihop och kopplas in på GPIO-pinnar.
+\item Ljudfrekvensen måste kunna styras med en avståndssensor
+\item Ljudvolymen måste kunna regleras med en annan avståndssensor
+\item Ett maxavstånd måste implementeras så att instrumentet tystnar då avståndet är större än maxavståndet.
+\item Man måste kunna byta vågform genom att trycka på en knapp. Det måste finnas stöd för sinus, sågtand och fyrkantsvåg.
+\end{itemize}
+
+\bigskip
+\noindent
+Följande egenskaper kan komma att läggas till om tiden tillåter:
+\begin{itemize}
+\item Ackompanjemang till instrumentet
+\item Musikspelare (komp utan att man själv spelar)
+\item Valbar skala för Theremin-funktionen
+\item Eko eller andra effekter/filter
+\item Utskrift på skärm (kanske en vågform eller vilken ton man spelar)
+\end{itemize}
+
+%det kanske finns nåt bättre ord än lösning
+\section*{Lösning}
+En klassisk Theremin är helt analog och använder sig av avståndssensorer bestående av metallantenner vars kapacitans påverkas av avståndet till musikantens händer. Det instrument vi kommer att konstruera är till största del digitalt, och kommer att använda
+avståndssensorer baserade på ultraljudsteknik. Vi kommer att läsa av digitala avståndsvärden från två sådana sensorer och använda dessa värden för att i realtid generera en ljudvåg av en viss frekvens och amplitud. För att kunna lyssna på det ljud som genereras använder vi en enkel helanalog DAC (Digital-Analog konverter) i form av en motståndsstege, som vi kopplar till någon form av förstärkare och högtalare.
+
+\section*{Testning}
+Vi planerar att testa varje komponent för sig för att sen testa en helhetslösning. En tongenerator kan hjälpa till att testa så frekvenserna blir rätt, alternativt kan man spela in det genererade ljudet på en PC och jämföra med en ton av korrekt frekvens med någon lämplig mjukvara.
+
+\section*{Uppdelning}
+Vi har ingen i förväg planerad uppdelning. Båda laboranterna har varsin Chipkit med de nödvändiga komponenterna samt varsin DAC och högtalare med inbyggd förstärkare. Mikael
+har sedan tidigare erfarenhet av ljudframställning på digital väg. Båda laboranterna har erfarenhet av mjukvara för ljud och musik och viss kännedom om skalor, tonhöjder och andra musikaliska begrepp.
+
+%kollar en pdf då
+\section*{Reflektion}
+Vi har redan en fungerande prototyp, men då detta är i mpide som inte är tillåtet
+så kommer vi nu göra om det i C.
+Ett problem som uppstått är att varje gång man söker på internet efter hur man ska 
+göra någonting med arduino så får man 99 \% av fallen upp hur det görs med arduinobibliotek. 
+
+\end{document}

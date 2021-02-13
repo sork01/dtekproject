@@ -1,0 +1,4 @@
+ioshield_switches.c.o: ioshield_switches.c ioshield_switches.h \
+ /opt/mcb32tools/include/pic32mx.h
+ioshield_switches.c ioshield_switches.h :
+ /opt/mcb32tools/include/pic32mx.h :
